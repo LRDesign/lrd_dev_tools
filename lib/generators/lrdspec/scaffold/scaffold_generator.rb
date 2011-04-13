@@ -3,8 +3,6 @@ require 'generators/rspec'
 # Try to force it to require the file from the rspec gem
 require 'generators/rspec/mailer/../scaffold/scaffold_generator'
 require 'rails/generators/resource_helpers'
-# require 'rspec/generators/rspec'
-# require 'rspec/generators/scaffold/scaffold_generator'
 
 module Lrdspec
   module Generators
