@@ -1,0 +1,4 @@
+Copyright (c) 2011 Evan Dorn and Logical Reality Design
+
+
+This gem is the private property of and copyright by Evan Dorn and Logical Reality Design.  It may be used only in LRD projects and by LRD developers, and may not be used for outside purposes without the explicit written permission of an LRD officer.
