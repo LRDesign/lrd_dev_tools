@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/rspec_default_values'
 
-module Rspec
-  module Lrd
+module Lrdspec
+  module Factory
     module Generators
-      class Factory < Rails::Generators::NamedBase
+      class ModelGenerator < Rails::Generators::NamedBase
         p "defining the factory scaffold generator"
 
         include Rails::Generators::ResourceHelpers
@@ -31,8 +31,8 @@ module Rspec
           "#{name}.html.haml"
         end
 
+        p self.namespace
       end
-      p Factory.namespace
 
     end
   end
