@@ -37,3 +37,13 @@ end
 
 # run mizugumo generator
 
+# template database.yml.example with application name
+
+# template config/initializers/smtp.rb.example
+# template config/initializers/session_secret.rb.example
+
+
+# LONG TERM
+
+# optionally install CMS engine
+
