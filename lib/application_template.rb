@@ -33,15 +33,17 @@ application do
 EOTEXT
 end
 
-# replace application.html with haml version
-
 # run mizugumo generator
 
-# template database.yml.example with application name
+# replace application.html with haml mizugumized version
 
+# template database.yml.example with application name
 # template config/initializers/smtp.rb.example
 # template config/initializers/session_secret.rb.example
 
+# remove test/
+
+# template README
 
 # LONG TERM
 
