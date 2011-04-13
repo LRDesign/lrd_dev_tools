@@ -46,7 +46,8 @@
           -# = render :partial => 'layouts/aux'
 
           #content
-            %h1= yield :headline if yield :headline
+            - if content_for? :headline
+              %h1= yield :headline
             #content-body
               = render :partial => 'layouts/flash' , :locals => { :flash => flash }
               = yield

@@ -39,6 +39,7 @@ end
 template "app/views/layouts/application.html.haml"
 template "app/views/layouts/_nav.html.haml"
 template "app/views/layouts/_flash.html.haml"
+directory "app/stylesheets"
 
 # template some more files
 remove_file 'README'
@@ -76,12 +77,15 @@ remove_dir('test')
 
 
 # run installs
-# run 'bundle install'
-# run 'rails generate mizugumo:install'
-# run 'rails generate rspec:install'
+run 'bundle install'
+run 'rails generate mizugumo:install'
+run 'rails generate rspec:install'
 
 # TODO - LONG TERM below this line
 
 # optionally install CMS engine
+# optionally install authlogic
+# optionally install devise
 # template better 404/422/500 html
 
+# optionally install hoptoad
