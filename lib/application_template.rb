@@ -1,4 +1,4 @@
-source_paths << File.expand_path('../templates', __FILE__)
+source_paths.unshift File.expand_path('../templates/rails_app', __FILE__)
 
 gem 'haml'
 gem 'mizugumo'
@@ -36,20 +36,26 @@ end
 inside 'app/views/layouts' do
   remove_file('application.html.erb')
 end
-template "application.html.haml", "app/views/layouts/application.html.haml"
-template "_nav.html.haml", "app/views/layouts/_nav.html.haml"
-template "_flash.html.haml", "app/views/layouts/_flash.html.haml"
+template "app/views/layouts/application.html.haml"
+template "app/views/layouts/_nav.html.haml"
+template "app/views/layouts/_flash.html.haml"
 
 # template some more files
+remove_file 'README'
+template 'README'
+# p source_paths
+# copy_file 'README'
 remove_file '.gitignore'
 template 'dot.gitignore', '.gitignore'
 remove_file 'config/database.yml'
-template 'database.yml', 'config/database.yml'
+template 'config/database.yml'
 run 'cp config/database.yml config/database.yml.example'
 run 'cp config/initializers/secret_token.rb config/initializers/secret_token.rb.example'
-template 'smtp.rb', 'config/initializers/smtp.rb'
+template 'config/initializers/smtp.rb'
 run 'cp config/initializers/smtp.rb config/initializers/smtp.rb.example'
 remove_file 'public/index.html'
+directory 'spec'
+directory 'lib'
 
 # configure generators LRD-style
 application do
@@ -69,15 +75,11 @@ end
 # remove test folder
 remove_dir('test')
 
-# TODO template sample_data.rake
-# TODO template README
-# TODO template spec/support files
-# TODO template standard partials:  nav, flash, etc.
 
 # run installs
-run 'bundle install'
-run 'rails generate mizugumo:install'
-run 'rails generate rspec:install'
+# run 'bundle install'
+# run 'rails generate mizugumo:install'
+# run 'rails generate rspec:install'
 
 # TODO - LONG TERM below this line
 
