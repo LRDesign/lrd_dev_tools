@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+template = File.expand_path('../../lib/application_template.rb', __FILE__)
+exec *["rails", "new", ARGV[0], "-m", template]

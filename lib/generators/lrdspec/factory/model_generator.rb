@@ -4,7 +4,7 @@ module Lrdspec
   module Factory
     module Generators
       class ModelGenerator < Rails::Generators::NamedBase
-        p "defining the factory scaffold generator"
+        # p "defining the factory scaffold generator"
 
         include Rails::Generators::ResourceHelpers
         source_root File.dirname(__FILE__) + '/templates'
@@ -31,7 +31,7 @@ module Lrdspec
           "#{name}.html.haml"
         end
 
-        p self.namespace
+        # p self.namespace
       end
 
     end

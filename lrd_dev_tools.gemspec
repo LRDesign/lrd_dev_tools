@@ -24,8 +24,12 @@ Gem::Specification.new do |s|
     "VERSION"
   ]
   s.files		+= Dir.glob("lib/**/*")
+  s.files		+= Dir.glob("bin/**/*")
   # s.files   += Dir.glob("doc/**/*")
   # s.files   += Dir.glob("spec/**/*")
+
+  s.bindir = 'bin'
+  s.executables = [ 'lrd_template' ]
 
   s.homepage = %q{http://LRDesign.com}
   s.licenses = ["proprietary"]
