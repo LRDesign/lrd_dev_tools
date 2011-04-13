@@ -3,10 +3,10 @@
 # scaffolds we create should get a method in here to generate some
 # fake entries.   Most of it should be lipsum.
 
-# IT SHOULD NOT CONTAIN ny data absolutely required for the site to work,
+# IT SHOULD NOT CONTAIN nay data absolutely required for the site to work,
 #   especially that we might need in testing.  For example, groups for 'users'
 #   and 'admins' if we are using an authorization system.   Such things should
-#   go in seeds.rb.
+#   go in db/seeds.rb.
 #
 # Once the client has real data ... i.e. an initial set of pages and/or
 # a menu/location tree, those should replace the lorem data.
