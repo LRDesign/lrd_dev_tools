@@ -58,20 +58,16 @@ end
 # remove test folder
 remove_dir('test')
 
-# # run bundle install
-# run 'bundle install'
-#
-# # run mizugumo install
-# run 'rails generate mizugumo:install'
-#
-# # run rspec install
-# run 'rails generate rspec:install'
+# TODO template sample_data.rake
+# TODO template README
 
-# template config/initializers/smtp.rb.example
+# run installs
+run 'bundle install'
+run 'rails generate mizugumo:install'
+run 'rails generate rspec:install'
 
-# template README
 
-# LONG TERM
+# TODO - LONG TERM below this line
 
 # optionally install CMS engine
 # template better 404/422/500 html
