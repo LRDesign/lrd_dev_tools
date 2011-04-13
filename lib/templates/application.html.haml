@@ -32,14 +32,17 @@
 
     = yield :header
 
-  %body{ :class => admin? ? 'with_admin' : nil }
-    = render :partial => 'layouts/admin_nav' if admin?
+  -# TODO: Turn on these admin lines if the site has an admin interface, otherwise delete them.
+  -# %body{ :class => admin? ? 'with_admin' : nil }
+  -# = render :partial => 'layouts/admin_nav' if admin?
+  %body
     #inset
       #wrap
         #header
           = render :partial => 'layouts/nav'
 
         #content-wrap
+          -# TODO: Suggested place for a sidebar.  Remove if not using it
           -# = render :partial => 'layouts/aux'
 
           #content
