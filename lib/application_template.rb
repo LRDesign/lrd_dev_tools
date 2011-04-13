@@ -27,9 +27,20 @@ end
 inside 'app/views/layouts' do
   remove_file('application.html.erb')
 end
-
 template "application.html.haml", "app/views/layouts/application.html.haml"
 
+# template some more files
+remove_file '.gitignore'
+template 'dot.gitignore', '.gitignore'
+remove_file 'config/database.yml'
+template 'database.yml', 'config/database.yml'
+run 'cp config/database.yml config/database.yml.example'
+run 'cp config/initializers/secret_token.rb config/initializers/secret_token.rb.example'
+template 'smtp.rb', 'config/initializers/smtp.rb'
+run 'cp config/initializers/smtp.rb config/initializers/smtp.rb.example'
+remove_file 'public/index.html'
+
+# configure generators LRD-style
 application do
   <<-EOTEXT
   config.generators do |g|
@@ -44,18 +55,24 @@ application do
 EOTEXT
 end
 
-# run mizugumo generator
+# remove test folder
+remove_dir('test')
 
+# # run bundle install
+# run 'bundle install'
+#
+# # run mizugumo install
+# run 'rails generate mizugumo:install'
+#
+# # run rspec install
+# run 'rails generate rspec:install'
 
-# template database.yml.example with application name
 # template config/initializers/smtp.rb.example
-# template config/initializers/session_secret.rb.example
-
-# remove test/
 
 # template README
 
 # LONG TERM
 
 # optionally install CMS engine
+# template better 404/422/500 html
 
