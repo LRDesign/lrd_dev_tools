@@ -1,3 +1,5 @@
+source_paths << File.expand_path('../templates', __FILE__)
+
 gem 'haml'
 gem 'mizugumo'
 gem 'will_paginate', "~> 3.0.pre2"
@@ -16,8 +18,17 @@ gem 'mongrel',       :group => 'development'
 
 # Delete prototype
 inside('public/javascripts') do
-  FileUtils.rm_rf %w(controls.js dragdrop.js effects.js prototype.js rails.js)
+  %w(controls.js dragdrop.js effects.js prototype.js rails.js).each{ |file|
+    remove_file(file)
+  }
 end
+
+# replace application.html with haml mizugumized version
+inside 'app/views/layouts' do
+  remove_file('application.html.erb')
+end
+
+template "application.html.haml", "app/views/layouts/application.html.haml"
 
 application do
   <<-EOTEXT
@@ -35,7 +46,6 @@ end
 
 # run mizugumo generator
 
-# replace application.html with haml mizugumized version
 
 # template database.yml.example with application name
 # template config/initializers/smtp.rb.example
