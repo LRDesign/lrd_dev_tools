@@ -66,20 +66,27 @@ EOTEXT
 end
 
 bundle_bin = nil
+bundle_path = nil
 if %x{which rvm}.empty? or /gem.*not set/ =~ %w{rvm info}
   if ENV['BUNDLE_BIN']
     bundle_bin = ENV['BUNDLE_BIN']
   elsif ENV['LRD_BUNDLE_BIN_ROOT']
-    bundle_bin = File::join(ENV['LRD_BUNDLE_BIN_ROOT'], File::basename(app_path), "bin")
+    bundle_bin  = File::join(ENV['LRD_BUNDLE_BIN_ROOT'], File::basename(app_path), "bin")
+    bundle_path = File::join(ENV['LRD_BUNDLE_BIN_ROOT'], "lib")
   else
     say("Not in a gemset, no BUNDLE_BIN set - gleefully installing to system", :yellow)
   end
 end
 
 # run installs
-if bundle_bin
+if bundle_bin or bundle_path
   say("Setting up BUNDLE_BIN as #{bundle_bin}", :blue) 
-  run "bundle install --binstubs #{bundle_bin}"
+  bundle_command = "bundle install"
+  bundle_command += " --binstubs #{bundle_bin}" if bundle_bin
+  bundle_command += " --path #{bundle_path}" if bundle_path
+
+  run bundle_command
+  run "rails generate setup_env"
 else
   run 'bundle install'
 end
