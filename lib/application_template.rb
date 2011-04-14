@@ -25,13 +25,6 @@ end
 EOTEXT
 end
 
-# Delete prototype
-inside('public/javascripts') do
-  %w(controls.js dragdrop.js effects.js prototype.js rails.js).each{ |file|
-    remove_file(file)
-  }
-end
-
 # replace application.html with haml mizugumized version
 inside 'app/views/layouts' do
   remove_file('application.html.erb')
@@ -72,12 +65,25 @@ application do
 EOTEXT
 end
 
-# remove test folder
-remove_dir('test')
-
+bundle_bin = nil
+if %x{which rvm}.empty? or /gem.*not set/ =~ %w{rvm info}
+  if ENV['BUNDLE_BIN']
+    bundle_bin = ENV['BUNDLE_BIN']
+  elsif ENV['LRD_BUNDLE_BIN_ROOT']
+    bundle_bin = File::join(ENV['LRD_BUNDLE_BIN_ROOT'], File::basename(app_path), "bin")
+  else
+    say("Not in a gemset, no BUNDLE_BIN set - gleefully installing to system", :yellow)
+  end
+end
 
 # run installs
-run 'bundle install'
+if bundle_bin
+  say("Setting up BUNDLE_BIN as #{bundle_bin}", :blue) 
+  run "bundle install --binstubs #{bundle_bin}"
+else
+  run 'bundle install'
+end
+
 run 'rails generate mizugumo:install'
 run 'rails generate rspec:install'
 
