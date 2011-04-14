@@ -67,7 +67,7 @@ end
 
 bundle_bin = nil
 bundle_path = nil
-if %x{which rvm}.empty? or /gem.*not set/ =~ %w{rvm info}
+if %x{which rvm}.empty? or /gem.*not set/ =~ %x{rvm info}
   if ENV['BUNDLE_BIN']
     bundle_bin = ENV['BUNDLE_BIN']
   elsif ENV['LRD_BUNDLE_BIN_ROOT']
@@ -80,7 +80,7 @@ end
 
 # run installs
 if bundle_bin or bundle_path
-  say("Setting up BUNDLE_BIN as #{bundle_bin}", :blue) 
+  say("Setting up BUNDLE_BIN as #{bundle_bin}", :blue)
   bundle_command = "bundle install"
   bundle_command += " --binstubs #{bundle_bin}" if bundle_bin
   bundle_command += " --path #{bundle_path}" if bundle_path
