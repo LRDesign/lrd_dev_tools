@@ -1,8 +1,6 @@
 #debug
   .name
-    <%= app_const_name %>,
-    = Rails.env
-    environment
+    = "<%= app_const_name %> (#{Rails.env})"
   .version
     %b Code Revision:
     = GIT_REVISION

@@ -79,6 +79,7 @@ inside 'app/views/layouts' do
   remove_file('application.html.erb')
 end
 directory "app/views/layouts"
+template 'app/views/layouts/_debug.html.haml'
 directory "app/stylesheets"
 directory "public/images"
 
