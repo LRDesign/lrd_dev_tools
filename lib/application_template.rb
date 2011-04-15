@@ -1,14 +1,20 @@
 source_paths.unshift File.expand_path('../templates/rails_app', __FILE__)
 
+# clean up comments in the gemfile
+gsub_file 'Gemfile', /(^#.*$)*/m, ''
+
 gem 'haml'
 gem 'mizugumo'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'populator'
 gem 'faker'
 gem 'mysql2'
+gem 'lrd_view_tools', :path => '../lrd_view_tools'
+gem 'rack-bug', :require => 'rack/bug', :git => 'git://github.com/brynary/rack-bug', :branch => 'rails3'
 
 append_to_file('Gemfile') do
 <<-EOTEXT
+
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
@@ -25,14 +31,39 @@ end
 EOTEXT
 end
 
+# make a staging environment
+run 'cp config/environments/production.rb config/environments/staging.rb'
+
+# add rack-bug to development & staging environments
+['development', 'staging'].each do |env|
+  require 'active_support/secure_random'
+  secret_key = ActiveSupport::SecureRandom.hex(64)
+  insert_into_file "config/environments/#{env}.rb", :after => "::Application.configure do\n" do
+  <<-EOTEXT
+  config.middleware.use 'Rack::Bug',
+    :secret_key => '#{secret_key}',
+    :panel_classes => [
+       Rack::Bug::RailsInfoPanel,
+       Rack::Bug::TimerPanel,
+       Rack::Bug::RequestVariablesPanel,
+       Rack::Bug::ActiveRecordPanel,
+       Rack::Bug::TemplatesPanel,
+       Rack::Bug::LogPanel,
+       # Rack::Bug::SQLPanel,    # -- adds ~10 sec to load time
+       # Rack::Bug::CachePanel,  # -- adds ~10 sec to load time
+       Rack::Bug::MemoryPanel
+     ]
+EOTEXT
+  end
+end
+
 # replace application.html with haml mizugumized version
 inside 'app/views/layouts' do
   remove_file('application.html.erb')
 end
-template "app/views/layouts/application.html.haml"
-template "app/views/layouts/_nav.html.haml"
-template "app/views/layouts/_flash.html.haml"
+directory "app/views/layouts"
 directory "app/stylesheets"
+directory "public/images"
 
 # template some more files
 remove_file 'README'
@@ -78,7 +109,7 @@ if %x{which rvm}.empty? or /gem.*not set/ =~ %x{rvm info}
   end
 end
 
-# run installs
+#run installs
 if bundle_bin or bundle_path
   say("Setting up BUNDLE_BIN as #{bundle_bin}", :blue)
   bundle_command = "bundle install"
