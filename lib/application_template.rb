@@ -57,13 +57,6 @@ EOTEXT
   end
 end
 
-# replace application.html with haml mizugumized version
-inside 'app/views/layouts' do
-  remove_file('application.html.erb')
-end
-directory "app/views/layouts"
-directory "app/stylesheets"
-directory "public/images"
 
 # template some more files
 remove_file 'README'
@@ -80,6 +73,15 @@ run 'cp config/database.yml config/database.yml.example'
 run 'cp config/initializers/secret_token.rb config/initializers/secret_token.rb.example'
 run 'cp config/initializers/smtp.rb config/initializers/smtp.rb.example'
 remove_file 'public/index.html'
+
+# replace application.html with haml mizugumized version
+inside 'app/views/layouts' do
+  remove_file('application.html.erb')
+end
+directory "app/views/layouts"
+directory "app/stylesheets"
+directory "public/images"
+
 
 # configure generators LRD-style
 application do
@@ -122,8 +124,18 @@ else
   run 'bundle install'
 end
 
+run 'git init .'
+run 'git add .'
+run 'git commit -m "Generated initial application via LRD app template"'
+
 run 'rails generate mizugumo:install'
+run 'git add .'
+run 'git commit -m "Ran mizugumo installer"'
+
 run 'rails generate rspec:install'
+run 'git add .'
+run 'git commit -m "Ran rspec installer"'
+
 
 # TODO - LONG TERM below this line
 
