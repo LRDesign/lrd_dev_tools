@@ -57,7 +57,6 @@ EOTEXT
   end
 end
 
-
 # template some more files
 remove_file 'README'
 template 'README'
@@ -125,7 +124,7 @@ else
   run 'bundle install'
 end
 
-run 'git init .'
+run 'git init'
 run 'git add .'
 run 'git commit -m "Generated initial application via LRD app template"'
 
