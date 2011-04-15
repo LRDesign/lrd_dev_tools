@@ -4,7 +4,7 @@ if Rails.env.development? or Rails.env.staging?
     GIT_REVISION = GIT_TAG = GIT_COMMIT_DATE = "N/A"
   else
     GIT_COMMIT_DATE = DateTime.parse(`git show --pretty=format:"%ci" --quiet`)
-    GIT_TAG = `git describe`
+    GIT_TAG = `git describe 2>&1`
     GIT_TAG = "no tag" if GIT_TAG =~ /fatal/
   end
 end

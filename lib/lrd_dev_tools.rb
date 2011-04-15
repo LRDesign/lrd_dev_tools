@@ -1,7 +1,7 @@
 module LRD::DevTools
   class Railtie < Rails::Railtie
-    generators do
-      # require 'generators/rspec/scaffold/scaffold_generator'
+    config.generators do |g|
+      g.templates.unshift File::expand_path('../templates', __FILE__)
     end
 
     rake_tasks do
