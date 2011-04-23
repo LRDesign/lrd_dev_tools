@@ -12,7 +12,6 @@
           %li= msg
 
 <% for attribute in attributes -%>
-  = labeled_input f, :<%= attribute.name %>
+  = f.labeled_input :<%= attribute.name %>
 <% end -%>
-  .actions
-    = f.submit
+  = f.unlabeled_submit

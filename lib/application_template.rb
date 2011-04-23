@@ -9,7 +9,7 @@ gem 'will_paginate', "~> 3.0.pre2"
 gem 'populator'
 gem 'faker'
 gem 'mysql2'
-gem 'lrd_view_tools', :path => '../lrd_view_tools'
+gem 'lrd_view_tools'
 gem 'rack-bug', :require => 'rack/bug', :git => 'git://github.com/brynary/rack-bug', :branch => 'rails3'
 
 append_to_file('Gemfile') do
@@ -78,7 +78,7 @@ inside 'app/views/layouts' do
   remove_file('application.html.erb')
 end
 directory "app/views/layouts"
-template 'app/views/layouts/_debug.html.haml'
+# template 'app/views/layouts/_debug.html.haml'
 directory "app/stylesheets"
 directory "public/images"
 
