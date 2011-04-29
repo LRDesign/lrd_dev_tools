@@ -12,6 +12,10 @@
           %li= msg
 
 <% for attribute in attributes -%>
+  <%- if attribute.field_type == 'text_area' %>
+  = f.labeled_input :<%= attribute.name %>, :type => 'text_area'
+  <% else %>
   = f.labeled_input :<%= attribute.name %>
+  <% end %>
 <% end -%>
   = f.unlabeled_submit

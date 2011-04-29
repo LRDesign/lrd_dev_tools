@@ -8,9 +8,10 @@ gem 'mizugumo'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'populator'
 gem 'faker'
-gem 'mysql2'
+gem 'postgres'
+gem 'activerecord'
 gem 'lrd_view_tools'
-gem 'rack-bug', :require => 'rack/bug', :git => 'git://github.com/brynary/rack-bug', :branch => 'rails3'
+gem 'rack-bug', :require => 'rack/bug', :git => 'git://github.com/LRDesign/rack-bug.git'
 
 append_to_file('Gemfile') do
 <<-EOTEXT
