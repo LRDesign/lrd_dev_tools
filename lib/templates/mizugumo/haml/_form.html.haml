@@ -11,11 +11,11 @@
         - @<%= singular_table_name %>.errors.full_messages.each do |msg|
           %li= msg
 
-<% for attribute in attributes -%>
-  <%- if attribute.field_type == 'text_area' %>
+<%- for attribute in attributes -%>
+  <%- if attribute.field_type.to_s == 'text_area' -%>
   = f.labeled_input :<%= attribute.name %>, :type => 'text_area'
-  <% else %>
+  <%- else -%>
   = f.labeled_input :<%= attribute.name %>
-  <% end %>
-<% end -%>
+  <%- end -%>
+<%- end -%>
   = f.unlabeled_submit

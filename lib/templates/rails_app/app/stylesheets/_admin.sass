@@ -1,15 +1,15 @@
 @import constants.sass
 
-!admin_menu_height = 20px
+$admin_menu_height: 20px
 
 body.with_admin #inset
-  :margin-top !admin_menu_height
+  :margin-top $admin_menu_height
 
 
 #admin_tools
   :width 100%
   :font-size 11px
-  :background !admin_background_color
+  :background $admin_background_color
   :color white
   :z-index 2
   :position absolute
@@ -53,7 +53,7 @@ body.with_admin #inset
       :font-size 10px
 
 .admin_tool, .admin_tool a
-  :background !admin_background_color
+  :background $admin_background_color
   :color white
   :padding 5px
 

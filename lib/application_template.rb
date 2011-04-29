@@ -8,7 +8,7 @@ gem 'mizugumo'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'populator'
 gem 'faker'
-gem 'postgres'
+gem 'pg'
 gem 'activerecord'
 gem 'lrd_view_tools'
 gem 'rack-bug', :require => 'rack/bug', :git => 'git://github.com/LRDesign/rack-bug.git'
