@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = %q{lrd_dev_tools}
-  s.version = "0.0.2"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Evan Dorn"]
-  s.date = %q{2011-04-12}
+  s.date = %q{2011-05-02}
   s.summary = %q{Development tools for LRD projects.}
   s.description = %q{Compatible with Rails 3.x.   Most of this probably
     won't work with Rails 2.'
