@@ -27,7 +27,7 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'lrd_dev_tools'
+  gem 'lrd_dev_tools', ">= 0.1.1"
   gem 'mongrel'
 end
 EOTEXT
