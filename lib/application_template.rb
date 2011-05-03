@@ -4,14 +4,15 @@ source_paths.unshift File.expand_path('../templates/rails_app', __FILE__)
 gsub_file 'Gemfile', /(^#.*$)*/m, ''
 
 gem 'haml'
+gem 'sass'
 gem 'mizugumo'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'populator'
 gem 'faker'
 gem 'pg'
 gem 'activerecord'
-gem 'lrd_view_tools'
-gem 'rack-bug', :require => 'rack/bug', :git => 'git://github.com/LRDesign/rack-bug.git'
+gem "lrd_view_tools", ">= 0.1.3"
+gem "lrd_rack_bug", ">= 0.3.0.4"
 
 append_to_file('Gemfile') do
 <<-EOTEXT
