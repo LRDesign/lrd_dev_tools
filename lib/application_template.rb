@@ -18,10 +18,9 @@ inject_into_file('Gemfile', <<EOL, :before => /source/)
 gemrc = File::expand_path("~/.gemrc")
 if File::exists?(gemrc)
   require 'yaml'
-  conf = File::open(gemrc) {|rcfile| conf = YAML::load(rcfile) }
-    conf[:sources] and conf[:sources].grep(/lrdesign\.com/).each do |server|
-      source server
-    end
+  conf = File::open(gemrc) {|rcfile| YAML::load(rcfile) }
+  (conf[:sources] || []).grep(/lrdesign\.com/).each do |server|
+    source server
   end
 end
 EOL
