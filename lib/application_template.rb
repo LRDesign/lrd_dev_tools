@@ -27,7 +27,7 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'lrd_dev_tools', :path => '../lrd_dev_tools'
+  gem 'lrd_dev_tools'
   gem 'mongrel'
 end
 EOTEXT
