@@ -14,9 +14,19 @@ gem 'activerecord'
 gem "lrd_view_tools", ">= 0.1.3"
 gem "lrd_rack_bug", ">= 0.3.0.4"
 
-append_to_file('Gemfile') do
-<<-EOTEXT
+inject_into_file('Gemfile', <<EOL, :before => /source/)
+gemrc = File::expand_path("~/.gemrc")
+if File::exists?(gemrc)
+  require 'yaml'
+  conf = File::open(gemrc) {|rcfile| conf = YAML::load(rcfile) }
+    conf[:sources] and conf[:sources].grep(/lrdesign\.com/).each do |server|
+      source server
+    end
+  end
+end
+EOL
 
+append_to_file('Gemfile', <<-EOTEXT)
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
@@ -31,7 +41,6 @@ group :development do
   gem 'mongrel'
 end
 EOTEXT
-end
 
 # make a staging environment
 run 'cp config/environments/production.rb config/environments/staging.rb'
