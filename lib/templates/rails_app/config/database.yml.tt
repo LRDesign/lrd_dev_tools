@@ -2,6 +2,8 @@ development:
   adapter: postgresql
   database: <%= app_name %>_dev
   username: postgres
+  host: localhost
+  port: 5433
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -10,8 +12,12 @@ test:
   adapter: postgresql
   database: <%= app_name %>_test
   username: postgres
+  host: localhost
+  port: 5433
 
 production:
   adapter: postgresql
   database: <%= app_name %>_dev
   username: postgres
+  host: localhost
+  port: 5433
