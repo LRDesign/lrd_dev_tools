@@ -51,7 +51,7 @@ run 'cp config/environments/production.rb config/environments/staging.rb'
        Rack::Bug::ActiveRecordPanel,
        Rack::Bug::TemplatesPanel,
        Rack::Bug::LogPanel,
-       # Rack::Bug::SQLPanel,    # -- adds ~10 sec to load time
+       Rack::Bug::SQLPanel,    # -- adds ~10 sec to load time
        # Rack::Bug::CachePanel,  # -- adds ~10 sec to load time
        Rack::Bug::MemoryPanel
      ]
