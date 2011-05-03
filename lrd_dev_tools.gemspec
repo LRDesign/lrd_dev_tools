@@ -15,13 +15,8 @@ Gem::Specification.new do |s|
     "README"
   ]
   s.files = [
-    ".document",
-    # "Gemfile",
-    # "Gemfile.lock",
     "LICENSE.txt",
-    "README",
-    # "Rakefile",
-    "VERSION"
+    "README"
   ]
   s.files		+= Dir.glob("lib/**/*")
   s.files		+= Dir.glob("bin/**/*")
