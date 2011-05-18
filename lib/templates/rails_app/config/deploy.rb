@@ -34,7 +34,6 @@ namespace :deploy do
   end
 
   after 'deploy:update_code' do
-    update_git_submodules
     link_shared_files
   end
 
