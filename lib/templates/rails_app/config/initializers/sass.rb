@@ -1,3 +1,3 @@
 Sass::Plugin.options[:template_location] = {
-  "#{RAILS_ROOT}/app/stylesheets" => "#{RAILS_ROOT}/public/stylesheets"
+  "#{Rails.root}/app/stylesheets" => "#{Rails.root}/public/stylesheets"
 }

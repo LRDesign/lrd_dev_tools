@@ -1,4 +1,4 @@
-Rspec::Matchers.define :redirect_back do
+RSpec::Matchers.define :redirect_back do
   match do |response|
     response.header['Location'] == "/previous/page"
   end
@@ -15,6 +15,6 @@ module RSpec::Rails::RedirectableBack
   end
 end
 
-Rspec::configure do |conf|
+RSpec::configure do |conf|
   conf.include RSpec::Rails::RedirectableBack, :type => :controller
 end

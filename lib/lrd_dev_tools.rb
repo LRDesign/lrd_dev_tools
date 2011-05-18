@@ -5,7 +5,7 @@ module LRD::DevTools
     end
 
     rake_tasks do
-      Dir[File.expand_path("../tasks/**/*.rake", __FILE__)].each {|f| load f; puts "loading #{f}"}
+      Dir[File.expand_path("../tasks/**/*.rake", __FILE__)].each {|f| load f }
     end
   end
 end
