@@ -62,13 +62,3 @@ namespace :gems do
   end
 end
 
-namespace :sitemap do
-  task :generate, :roles => :web do
-    run "cd #{release_path} && RAILS_ENV=#{rails_env} rake sitemap:generate"
-  end
-
-  after "deploy:update_code" do
-    generate
-  end
-end
-
