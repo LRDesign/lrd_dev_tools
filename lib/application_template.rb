@@ -6,7 +6,7 @@ gsub_file 'Gemfile', /(^#.*$)*/m, ''
 gem 'haml'
 gem 'sass'
 gem 'mizugumo'
-gem 'will_paginate', "~> 3.0.pre2"
+gem 'will_paginate'
 gem 'populator'
 gem 'faker'
 gem 'pg'
@@ -88,7 +88,6 @@ inside 'app/views/layouts' do
   remove_file('application.html.erb')
 end
 directory "app/views/layouts"
-# template 'app/views/layouts/_debug.html.haml'
 directory "app/stylesheets"
 directory "public/images"
 
@@ -99,6 +98,7 @@ application do
   config.generators do |g|
     g.template_engine     'mizugumo:haml'
     g.scaffold_controller 'mizugumo:scaffold_controller'
+    g.assets              'mizugumo:js_assets'
     g.test_framework      :lrdspec, :fixture => true
     g.fixture_replacement 'lrdspec:factory'
 
