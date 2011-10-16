@@ -4,7 +4,6 @@ source_paths.unshift File.expand_path('../templates/rails_app', __FILE__)
 gsub_file 'Gemfile', /(^#.*$)*/m, ''
 
 gem 'haml'
-gem 'sass'
 gem 'mizugumo'
 gem 'will_paginate'
 gem 'populator'
@@ -13,6 +12,7 @@ gem 'pg'
 gem 'activerecord'
 gem "lrd_view_tools", ">= 0.1.3"
 gem "lrd_rack_bug", ">= 0.3.0.4"
+gem 'jquery-rails'
 
 inject_into_file('Gemfile', <<EOL, :before => /source/)
 gemrc = File::expand_path("~/.gemrc")
@@ -26,18 +26,28 @@ end
 EOL
 
 append_to_file('Gemfile', <<-EOTEXT)
+
+group :assets do
+  gem 'sass-rails',   '~> 3.1.4'
+  gem 'uglifier', '>= 1.0.3'
+end
+
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'webrat'
-  gem 'ruby-debug'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'thin'
+  gem 'database_cleaner'
+  gem 'rspec-steps'  
+  gem 'ruby-debug19'
 end
 
 group :development do
   gem 'annotate'
   gem 'lrd_dev_tools', ">= 0.1.1"
-  gem 'mongrel'
+  #gem 'mongrel'
 end
 EOTEXT
 
@@ -75,7 +85,6 @@ template 'README'
 remove_file '.gitignore'
 template 'dot.gitignore', '.gitignore'
 remove_file 'config/database.yml'
-directory 'spec'
 directory 'lib'
 directory 'config'
 run 'cp config/database.yml config/database.yml.example'
@@ -88,14 +97,14 @@ inside 'app/views/layouts' do
   remove_file('application.html.erb')
 end
 directory "app/views/layouts"
-directory "app/stylesheets"
+directory "app/stylesheets", "app/assets/stylesheets"
 directory "public/images"
 
 
 # configure generators LRD-style
 application do
   <<-EOTEXT
-  config.generators do |g|
+  config.app_generators do |g|
     g.template_engine     'mizugumo:haml'
     g.scaffold_controller 'mizugumo:scaffold_controller'
     g.assets              'mizugumo:js_assets'
@@ -146,6 +155,54 @@ run 'rails generate rspec:install'
 run 'git add .'
 run 'git commit -m "Ran rspec installer"'
 
+gsub_file('spec/spec_helper.rb', /RSpec.configure(.*)end/) do 
+  <<-EOTEXT
+RSpec.configure do |config|
+  config.mock_with :rspec
+
+  #config.backtrace_clean_patterns = {}
+  config.before(:each, :type => :controller, :example_group => { :example_group => "nil"})  do
+    logout
+  end
+  config.include Devise::TestHelpers, :type => :controller
+
+  config.use_transactional_fixtures = false
+
+  DatabaseCleaner.strategy = :transaction
+
+  config.before :all, :type => :request do
+    Rails.application.config.action_dispatch.show_exceptions = true
+    DatabaseCleaner.clean_with :truncation
+    load 'db/seeds.rb'
+  end
+
+  config.after :all, :type => :request do
+    DatabaseCleaner.clean_with :truncation
+    load 'db/seeds.rb'
+  end
+
+  config.before :each, :type => proc{ |value| value != :request } do
+    DatabaseCleaner.start
+  end
+  config.after :each, :type => proc{ |value| value != :request } do
+    DatabaseCleaner.clean
+  end
+
+  config.before :suite do
+    DatabaseCleaner.clean_with :truncation
+    load 'db/seeds.rb'
+  end
+
+  config.include(SaveAndOpenOnFail, :type => :request)
+  config.include(HandyXPaths, :type => :request)
+end
+  EOTEXT
+end
+
+directory 'spec'
+
+run "git add ."
+run 'git commit -m "Added LRD spec helpers and support files."'
 
 # TODO - LONG TERM below this line
 
