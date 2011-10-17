@@ -1,9 +1,9 @@
-p "************************************************************** loaded LRD Dev Tools"
 
 module LRD::DevTools
   class Railtie < Rails::Railtie
-    config.generators do |g|
-      g.templates.unshift File::expand_path('../templates', __FILE__)
+
+    config.respond_to?(:app_generators) ? config.app_generators : config.generators do |generators|
+      generators.templates.unshift File::expand_path('../templates', __FILE__)
     end
 
     # We have to configure our test_framework and fixture_replacement in an initializer
