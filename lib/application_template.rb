@@ -40,7 +40,7 @@ group :development, :test do
   gem 'launchy'
   gem 'thin'
   gem 'database_cleaner'
-  gem 'rspec-steps'  
+  gem 'rspec-steps'
   gem 'ruby-debug19'
 end
 
@@ -155,7 +155,7 @@ run 'rails generate rspec:install'
 run 'git add .'
 run 'git commit -m "Ran rspec installer"'
 
-gsub_file('spec/spec_helper.rb', /RSpec.configure(.*)end/) do 
+gsub_file('spec/spec_helper.rb', /RSpec.configure(.*)end/) do
   <<-EOTEXT
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -203,6 +203,9 @@ directory 'spec'
 
 run "git add ."
 run 'git commit -m "Added LRD spec helpers and support files."'
+
+#TODO
+#add to lib/tasks/dev.rake a default config
 
 # TODO - LONG TERM below this line
 
