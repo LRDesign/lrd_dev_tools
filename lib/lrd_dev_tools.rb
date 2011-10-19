@@ -16,11 +16,11 @@ module LRD::DevTools
       generators.assets              'mizugumo:js_assets'
 
       generators.test_framework :lrdspec, :fixture => true
-      generators.fixture_replacement 'lrdspec:factory'      
+      generators.fixture_replacement 'lrdspec:factory'
 
       generators.fallbacks['mizugumo:haml']  = :haml
       generators.fallbacks[:lrdspec] = :rspec
-    end   
+    end
 
     rake_tasks do
       Dir[File.expand_path("../tasks/**/*.rake", __FILE__)].each {|f| load f }
