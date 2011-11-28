@@ -1,1 +1,5 @@
 Development tools for Logical Reality Design, common to many projects.
+
+
+Publishing gem to private server:
+gem push lrd_dev_tools-0.2.5.gem --host http://<USERNAME>:<PASSWORD>@gems.lrdesign.com 

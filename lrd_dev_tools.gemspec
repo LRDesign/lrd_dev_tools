@@ -1,13 +1,12 @@
 Gem::Specification.new do |s|
   s.name = %q{lrd_dev_tools}
-  s.version = "0.2.2"
+  s.version = "0.2.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Evan Dorn"]
-  s.date = %q{2011-10-16}
+  s.authors = ["Evan Dorn", "Judson Lester"]
+  s.date = %q{2011-11-28}
   s.summary = %q{Development tools for LRD projects.}
-  s.description = %q{Compatible with Rails 3.1.   Most of this probably
-    won't work with Rails 2.'
+  s.description = %q{Compatible with Rails 3.0 and 3.1.   This version won't work with Rails 2.'
   }
   s.add_dependency('mizugumo', '>= 0.2.0')
   s.email = %q{evan@lrdesign.com}
