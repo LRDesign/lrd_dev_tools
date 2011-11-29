@@ -1,3 +1,12 @@
+namespace :dev do
+  task :config_files
+
+  task :setup => [
+    "dev:config_files",
+    "db:dev_install"
+  ]
+ 
+end
 
 module LRD
   class ConfigFiles < Rake::TaskLib

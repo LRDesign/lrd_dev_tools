@@ -10,6 +10,11 @@ namespace :db do
     "test:prepare",
   ]
 
+  task :dev_install => [
+    :install,
+    "test:prepare"
+  ]
+
   namespace :test do
     #XXX TODO: use DBCleaner exclusively, instead of this
     task :prepare do
