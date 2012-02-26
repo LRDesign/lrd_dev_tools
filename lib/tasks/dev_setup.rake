@@ -1,3 +1,5 @@
+require 'rake/tasklib'
+
 namespace :dev do
   task :config_files
 
@@ -5,7 +7,7 @@ namespace :dev do
     "dev:config_files",
     "db:dev_install"
   ]
- 
+
 end
 
 module LRD
